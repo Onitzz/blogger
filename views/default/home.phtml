@@ -1,0 +1,13 @@
+<?php include THEME_PATH . DS . 'header.phtml'; ?>
+<?php include THEME_PATH . DS . 'navbar.phtml'; ?>
+
+<div class="container">
+    <h1>Page d'accueil</h1>
+
+    <?php foreach ($articles as $article) : ?>
+        <?php include THEME_PATH . DS . 'article.phtml'; ?>
+    <?php endforeach; ?>
+
+</div>
+
+<?php include THEME_PATH . DS . 'footer.phtml'; ?>
