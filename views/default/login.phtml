@@ -1,17 +1,26 @@
 <?php include THEME_PATH . DS . 'header.phtml'; ?>
 
 <form class="form-signin text-center" method="POST">
-    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <img class="mb-4 rounded-circle" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/negan-the-walking-dead-digital-drawing-femchi-art.jpg" alt="" width="150" height="150">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
+    <?php if(!empty($errors)):
+        foreach ($errors as $error) :?>
+            <div class="alert alert-danger"><?= $error ?></div>
+    <?php endforeach;;
+    endif; ?>
     <label for="username" class="sr-only">Username</label>
     <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
 
     <label for="password" class="sr-only">Password</label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <input type="password" id="password" name="password" class="form-control lastInput" placeholder="Password" required>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+
+    <a class="text-center" href="signup.php">Inscription</a>
     <p class="mt-5 mb-3 text-muted">&copy; <?= date('Y') ?></p>
+
+
 </form>
 
 <?php include THEME_PATH . DS . 'footer.phtml'; ?>

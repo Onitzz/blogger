@@ -1,0 +1,35 @@
+<?php include THEME_PATH . DS . 'header.phtml'; ?>
+
+    <form class="form-signin text-center" method="POST">
+        <img class="mb-4 rounded-circle" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/negan-the-walking-dead-digital-drawing-femchi-art.jpg" alt="" width="150" height="150">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <?php if(!empty($errors)):
+            foreach ($errors as $error) :?>
+                <div class="alert alert-danger"><?= $error ?></div>
+            <?php endforeach;;
+        endif; ?>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Pseudo"  autofocus>
+        <small id="hasUser" class="invalid-feedback form-text text-left">Ce nom d'utilisateur n'est pas autorisé</small>
+
+        <label for="email" class="sr-only">Email</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="Email"  autofocus>
+        <small id="hasEmail" class="invalid-feedback form-text text-left">Cet email est déjà enregistrer</small>
+
+
+        <label for="passWord" class="sr-only">Password</label>
+        <input type="password" id="passWord" name="passWord" class="form-control" placeholder="Password" >
+
+        <label for="passWordConfirm" class="sr-only">Password</label>
+        <input type="password" id="passWordConfirm" name="passWordConfirm" class="form-control lastInput" placeholder="Confirm password" >
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
+
+        <a class="text-center" href="login.php">J'ai déja un compte</a>
+
+
+    </form>
+    <script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/signup.js"></script>
+
+<?php include THEME_PATH . DS . 'footer.phtml'; ?>

@@ -10,15 +10,23 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-image: url("https://hdwallsource.com/img/2016/9/barb-wire-wallpaper-54315-56048-hd-wallpapers.jpg");
 }
+
+
 
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  background-color: #ffffffcc;
+
+  border-radius: 10px;
+  box-shadow: 12px 12px 20px #77777777;
 }
+
+
 .form-signin .checkbox {
   font-weight: 400;
 }
@@ -37,7 +45,7 @@ body {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.lastInput {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
