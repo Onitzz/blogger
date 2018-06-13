@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = authenticate($db, $username, $password);
     if($user) {
         $_SESSION['user'] = $user;
-        header('Location: index.php');
+        header('Location: dashboard.php');
     } else{
         $errors[] = 'Identifiant ou mot de passe invalide';
     }

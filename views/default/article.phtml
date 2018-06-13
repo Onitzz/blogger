@@ -1,9 +1,20 @@
 <div class="card mb-3">
     <div class="card-header">
-        Écrit le <?= $article['created_at']; ?>
+        Ecrit par <a href="mailto:<?= $article['email']; ?>"><?= ucfirst($article['username']) ?></a>
+         le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i:s'); ?>
     </div>
     <div class="card-body">
         <h5 class="card-title"><?= $article['title']; ?></h5>
+
+        <?php if(isset($article['categories'])) :?>
+        <?php $categories = explode(',', $article['categories']); ?>
+
+        <?php foreach ($categories as $category) :?>
+                <span class="badge badge-secondary"><?= $category; ?></span>
+
+        <?php endforeach; ?>
+        <?php endif; ?>
+
         <p class="card-text"><?= $article['teaser']; ?></p>
         <a href="#" class="btn btn-primary">Read More</a>
     </div>

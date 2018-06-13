@@ -1,6 +1,14 @@
 <?php
 // user.php
 
+function hasSession(){
+    if(!isset($_SESSION['user'])){
+        header('Location: login.php');
+        exit;
+    }
+
+}
+
 function authenticate(PDO $pdo, $username, $password) {
     $sql = 'SELECT * FROM user WHERE username=?';
     $stmt = $pdo->prepare($sql);

@@ -1,9 +1,11 @@
 <?php
 require 'init.php';
+require LIB_PATH . DS . 'user.php';
 
-if(!isset($_SESSION['user'])){
-    header('Location: login.php');
-    exit;
-}
 
-echo 'Hello';
+hasSession();
+
+$title = "Dashboard";
+
+
+include THEME_PATH . DS . 'dashboard.phtml';
