@@ -8,7 +8,6 @@ $errors = [];
 
 
 //validation formulaire
-echo ifExist($db, 'username', 'john');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

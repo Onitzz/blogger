@@ -1,0 +1,45 @@
+<?php include THEME_PATH . DS . 'header.phtml'; ?>
+<?php include THEME_PATH . DS . 'navbar.phtml'; ?>
+
+    <form class="mt-4 container" method="POST">
+        <h1 class="h3 mb-3 font-weight-normal"><?= $title ?></h1>
+
+        <div class="form-group">
+            <label for="title">Titre de l'article</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Le titre de votre article" value="<?= $inputTitle; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="teaser">Teaser  </label>
+            <input type="text" id="teaser" name="teaser" class="form-control" placeholder="La présentation de votre article" value="<?= $teaser; ?>" >
+        </div>
+
+        <div class="form-group">
+            <label for="content">Article  </label>
+            <textarea id="content" name="content" class="form-control" placeholder="Le contenu de votre article"><?= $content; ?></textarea>
+        </div>
+
+        <div>
+            <label for="categories">Categories de l'article</label>
+            <select name="categories[]" id="categories" class="form-control" multiple>
+                <option value="0" selected></option>
+                <?php foreach ($categories as $category) :
+                    $selected = in_array($category['category_id'],$inputCats) ? 'selected' : '' ?>
+                    <option value="<?= $category['category_id'] ?>" <?= $selected ?>><?= $category['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <input type="hidden" name="articleid" value="<?= $articleid ?? '' ?>">
+        <div class="mt-2 form-group form-check">
+            <input type="checkbox" class="form-check-input" name="publish" id="publish" <?= $status ? 'checked' : '' ?>>
+            <label class="form-check-label" for="publish" >publier</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
+
+
+
+    </form>
+    <script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/signup.js"></script>
+
+<?php include THEME_PATH . DS . 'footer.phtml'; ?>

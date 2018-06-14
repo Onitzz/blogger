@@ -1,21 +1,34 @@
 <div class="card mb-3">
     <div class="card-header">
-        Ecrit par <a href="mailto:<?= $article['email']; ?>"><?= ucfirst($article['username']) ?></a>
-         le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i:s'); ?>
+            Ecrit par <a href="mailto:<?= $article['email']; ?>"><?= ucfirst($article['username']) ?></a>
+            le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i:s'); ?>
+
+            <?php
+            if(isset($article['status'])):
+                if($article['status']): ?>
+                    <span class="float-right badge badge-primary">Publier</span>
+                <?php else : ?>
+                    <span class="float-right badge badge-info">Brouillon</span>
+                <?php endif;
+            endif;
+            ?>
     </div>
     <div class="card-body">
-        <h5 class="card-title"><?= $article['title']; ?></h5>
+        <h5 class="card-title"><?= $article['title']; ?>
 
         <?php if(isset($article['categories'])) :?>
         <?php $categories = explode(',', $article['categories']); ?>
 
         <?php foreach ($categories as $category) :?>
-                <span class="badge badge-secondary"><?= $category; ?></span>
+                <span class="float-right badge badge-secondary"><?= $category; ?></span>
 
         <?php endforeach; ?>
         <?php endif; ?>
-
+        </h5>
         <p class="card-text"><?= $article['teaser']; ?></p>
         <a href="#" class="btn btn-primary">Read More</a>
+        <?php if(isset($_SESSION['user']) && $article['user_id'] == $_SESSION['user']['user_id']) : ?>
+        <a href="<?= BASE_URL . DS . 'blog' . DS . 'update-article.php?id='.$article['article_id'] ?>" class="btn btn-secondary"> Modifier</a>
+        <?php endif; ?>
     </div>
 </div>

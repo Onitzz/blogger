@@ -38,3 +38,4 @@ function validMinMax($str,$min,$max){
     return $len < $min || $len > $max;
 
 }
+

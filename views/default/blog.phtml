@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h1 class="col-md-3"><?= $title ?></h1>
-            <button class="mb-2 mt-2 btn btn-success col-md-1 offset-md-8"><i class="fa fa-plus"></i>Ajouter</button>
+            <a class="mb-2 mt-2 btn btn-success col-md-1 offset-md-8"  href="<?= BASE_URL . DS . 'blog' . DS . 'add-article.php' ?>"><i class="fa fa-plus"></i> Ajouter</a>
         </div>
 
         <?php foreach ($articles as $article) : ?>

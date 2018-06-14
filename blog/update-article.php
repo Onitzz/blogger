@@ -1,5 +1,4 @@
 <?php
-
 require '../init.php';
 require LIB_PATH . DS . 'user.php';
 
@@ -10,16 +9,28 @@ require LIB_PATH . DS . 'blog.php';
 require LIB_PATH . DS . 'validator.php';
 
 $errors = [];
-$userid = $_SESSION['user']['user_id'];
-$inputTitle = $_POST['title'] ?? null;
-$teaser = $_POST['teaser'] ?? null;
-$content = $_POST['content'] ?? null;
-$inputCats = $_POST['categories'] ?? null;
-$status = isset($_POST['publish']) ? 1 : 0;
+
+
+$articleid=$_GET['id'];
+
+$article = getArticle($db, $articleid);
+
+$userid = $article['user_id'];
+$inputTitle = $article['title'];
+$teaser = $article['teaser'];
+$content = $article['content'];
+$inputCats = explode(',',$article['categories']);
+$status = $article['status'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump($_POST);
 
-
+    $userid = $_SESSION['user']['user_id'];
+    $inputTitle = $_POST['title'] ?? null;
+    $teaser = $_POST['teaser'] ?? null;
+    $content = $_POST['content'] ?? null;
+    $inputCats = $_POST['categories'] ?? null;
+    $status = isset($_POST['publish']) ? 1 : 0;
+    $articleid = $_POST['articleid'] ?? null;
 
     if(validMinMax($inputTitle,5,150)){
         $errors[] = 'Le titre est incorrect';
@@ -42,19 +53,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ( $inputCats as $category){
             $categories_clean[] = strip_tags($category);
         }
-        $article = addArticle($db,$userid,$inputTitle,$teaser,$content,$status,$categories_clean);
+        $article = updateArticle($db,$articleid,$inputTitle,$teaser,$content,$status,$categories_clean);
         if ($article) {
             header('Location: mes-articles.php');
         } else {
-            $errors[] =  'un problem est survenue';
+            $errors[] =  'un probleme est survenue';
         }
+
     }
 
 
 }
 
 $categories = getCategories($db);
-$title = "Ajouter un article";
+$title = "Modifier un article";
 
 
 
